@@ -5,7 +5,7 @@ function setup(width, height, fps, title) {
     r.InitWindow(width, height, title);
     r.SetTargetFPS(fps);
     const points = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 200; i++) {
         point = {
             x: Math.random() * width,
             y: Math.random() * height,
@@ -26,7 +26,7 @@ function draw(world) {
     r.BeginDrawing();
     r.ClearBackground(r.BLUE);
     for (const point of world.points) {
-        r.DrawCircleV(point, 5, r.WHITE);
+        r.DrawCircleV(point, 15, { r: 255, g: 255, b: 255, a: 100 });
     }
     r.EndDrawing();
 }
