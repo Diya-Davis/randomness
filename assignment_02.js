@@ -7,7 +7,7 @@ function setup(width, height, fps, title) {
     const lines = [];
     let x1 = 300;
     let x2 = 500;
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 100; i++) {
         lines.push(Math.random() * (x2 - x1) + x1);
     }
 
