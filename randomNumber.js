@@ -4,13 +4,18 @@ function setup(width, height, fps, title) {
     r.SetTraceLogLevel(r.LOG_NONE);
     r.InitWindow(width, height, title);
     r.SetTargetFPS(fps);
-    const lines = [];
+    const point = getPoint(width);
+
+    return { width, height, point };
+}
+
+function getPoint(width) {
+    const point = [];
 
     for (let i = 0; i < 100; i++) {
-        lines.push(Math.random() * width);
+        point.push(Math.random() * width);
     }
-
-    return { width, height, lines };
+    return point;
 }
 
 function loop(world) {
@@ -22,7 +27,7 @@ function loop(world) {
 function draw(world) {
     r.BeginDrawing();
     r.ClearBackground(r.BLUE);
-    for (const x of world.lines) {
+    for (const x of world.point) {
         r.DrawLineEx({ x, y: 0 }, { x, y: world.height }, 2, r.WHITE);
     }
     r.EndDrawing();
