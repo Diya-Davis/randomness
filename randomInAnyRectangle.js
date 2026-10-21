@@ -9,21 +9,23 @@ function setup(windowWidth, windowHeight, fps, title) {
     const y = 150;
     const width = 300;
     const height = 200;
-    const x1 = x + width;
-    const y1 = height + y;
+
+    const start = { x, y };
+    const end = { x: x + width, y: y + height };
+
     const rec = { x, y, width, height };
 
-    const points = getPoints(x1, x, y1, y);
+    const points = getPoints(start, end);
 
     return { windowWidth, windowHeight, points, rec };
 }
 
-function getPoints(x1, x, y1, y) {
+function getPoints(start, end) {
     const points = [];
     for (let i = 0; i < 100; i++) {
-        point = {
-            x: Math.random() * (x1 - x) + x,
-            y: Math.random() * (y1 - y) + y,
+        const point = {
+            x: Math.random() * (end.x - start.x) + start.x,
+            y: Math.random() * (end.y - start.y) + start.y,
         };
 
         points.push(point);
