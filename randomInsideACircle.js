@@ -4,20 +4,27 @@ function setup(windowWidth, windowHeight, fps, title) {
     r.SetTraceLogLevel(r.LOG_NONE);
     r.InitWindow(windowWidth, windowHeight, title);
     r.SetTargetFPS(fps);
+
+    const radius = 400;
+    const noOfPoints = 500;
+    const points = getPoints(radius, noOfPoints);
+    return { windowWidth, windowHeight, points };
+}
+
+function getPoints(ra, noOfPoints) {
     const points = [];
-    const ra = 400;
-    for (let i = 0; i < 500; i++) {
+    for (let i = 0; i < noOfPoints; i++) {
         radius = ra * Math.random();
         radian = Math.random() * (Math.PI / 2);
 
-        point = {
+        const point = {
             x: Math.cos(radian) * radius,
             y: Math.sin(radian) * radius,
         };
 
         points.push(point);
     }
-    return { windowWidth, windowHeight, points };
+    return points;
 }
 
 function loop(world) {
