@@ -1,0 +1,62 @@
+const r = require("raylib");
+
+function setup(windowWidth, windowHeight, fps, title) {
+    r.SetTraceLogLevel(r.LOG_NONE);
+    r.InitWindow(windowWidth, windowHeight, title);
+    r.SetTargetFPS(fps);
+
+    const radius = 200;
+    const noOfPoints = 200;
+    const x = 300;
+    const y = 200;
+    const points = getPoints(radius, noOfPoints, x, y);
+
+    return { windowWidth, windowHeight, points, x, y, radius };
+}
+
+function getPoints(radius, noOfPoints, x, y) {
+    const points = [];
+    for (let i = 0; i < noOfPoints; i++) {
+        const radii = radius * Math.random();
+        const radian = Math.random() * (2 * Math.PI);
+
+        const point = {
+            x: Math.cos(radian) * radii + x,
+            y: Math.sin(radian) * radii + y,
+        };
+
+        points.push(point);
+    }
+    return points;
+}
+
+function loop(world) {
+    while (!r.WindowShouldClose()) {
+        draw(world);
+    }
+}
+
+function draw(world) {
+    r.BeginDrawing();
+    r.ClearBackground(r.BLUE);
+
+    for (const point of world.points) {
+        r.DrawCircleV(point, 5, { r: 253, g: 249, b: 0, a: 100 });
+    }
+
+    r.DrawCircleLines(world.x, world.y, world.radius, r.WHITE);
+
+    r.EndDrawing();
+}
+
+function teardown() {
+    r.CloseWindow();
+}
+
+function main() {
+    world = setup(600, 400, 60, "points inside a circle");
+    loop(world);
+    teardown();
+}
+
+main();
