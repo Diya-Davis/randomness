@@ -4,6 +4,11 @@ function setup(width, height, fps, title) {
     r.SetTraceLogLevel(r.LOG_NONE);
     r.InitWindow(width, height, title);
     r.SetTargetFPS(fps);
+    const points = getPoints(width, height);
+    return { width, height, points };
+}
+
+function getPoints(width, height) {
     const points = [];
     for (let i = 0; i < 200; i++) {
         point = {
@@ -13,7 +18,7 @@ function setup(width, height, fps, title) {
 
         points.push(point);
     }
-    return { width, height, points };
+    return points;
 }
 
 function loop(world) {
