@@ -4,15 +4,22 @@ function setup(windowWidth, windowHeight, fps, title) {
     r.SetTraceLogLevel(r.LOG_NONE);
     r.InitWindow(windowWidth, windowHeight, title);
     r.SetTargetFPS(fps);
-    const points = [];
+
     const x = 200;
     const y = 150;
     const width = 300;
     const height = 200;
     const x1 = x + width;
     const y1 = height + y;
-
     const rec = { x, y, width, height };
+
+    const points = getPoints(x1, x, y1, y);
+
+    return { windowWidth, windowHeight, points, rec };
+}
+
+function getPoints(x1, x, y1, y) {
+    const points = [];
     for (let i = 0; i < 100; i++) {
         point = {
             x: Math.random() * (x1 - x) + x,
@@ -21,7 +28,7 @@ function setup(windowWidth, windowHeight, fps, title) {
 
         points.push(point);
     }
-    return { windowWidth, windowHeight, points, rec };
+    return points;
 }
 
 function loop(world) {
